@@ -11,22 +11,33 @@
 </head>
 <body>
     <?php 
-        //Validações
+    if(isset($_POST['form'])):
         $errors = array();
-        if(isset($_POST['form'])){
-          
-            if(!$idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT)):
-                $errors[] = 'Idade inválida';
-            endif;
 
-            if(!$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)):
-                $errors[] = 'E-mail inválido';
-            endif;
+        $nome      = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+        $sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
+        if(!filter_var($idade, FILTER_VALIDATE_INT)):
+            $errors[] = 'Idade inválida!';
+        endif;
 
-            if(!$peso = filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT)):
-                $errors[] = 'Peso inválido';
-            endif;
-        }
+        $peso = filter_input(INPUT_POST, 'peso', FILTER_SANITIZE_NUMBER_FLOAT);
+        if(!filter_var($peso, FILTER_VALIDATE_FLOAT)):
+            $errors[] = 'Peso inválido';
+        endif;
+
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
+            $errors[] = 'E-mail inválido';
+        endif;
+
+        $site = filter_input(INPUT_POST, 'site', FILTER_SANITIZE_URL);
+        if(!filter_var($site, FILTER_VALIDATE_URL)):
+            $errors[] = 'Site inválido';
+        endif;
+
+    endif;
     ?>
     <h1>Validação</h1>
     <!-- Mensagens -->
@@ -45,6 +56,7 @@
         Idade: <input type="text" name="idade" placeholder="Idade"><br>
         Peso: <input type="text" name="peso" placeholder="Peso"><br>
         E-mail: <input type="text" name="email" placeholde="E-mail"><br>
+        Site: <input type="text" name="site" placeholde="Site"><br>
         <button type="submit" name="form">Enviar</button>
     </form>
 
