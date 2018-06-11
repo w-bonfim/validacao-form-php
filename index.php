@@ -55,8 +55,8 @@
         Sobrenome: <input type="text" name="sobrenome" placeholder="Sobrenome"><br>
         Idade: <input type="text" name="idade" placeholder="Idade"><br>
         Peso: <input type="text" name="peso" placeholder="Peso"><br>
-        E-mail: <input type="text" name="email" placeholde="E-mail"><br>
-        Site: <input type="text" name="site" placeholde="Site"><br>
+        E-mail: <input type="text" name="email" placeholder="E-mail"><br>
+        Site: <input type="text" name="site" placeholder="Site"><br>
         <button type="submit" name="form">Enviar</button>
     </form>
 
