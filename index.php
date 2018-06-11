@@ -14,8 +14,8 @@
     if(isset($_POST['form'])):
         $errors = array();
 
-        $nome      = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-        $sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nome      = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+        $sobrenome = filter_input(INPUT_POST, 'sobrenome', FILTER_SANITIZE_STRING);
         
         $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
         if(!filter_var($idade, FILTER_VALIDATE_INT)):
